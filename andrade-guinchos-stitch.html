@@ -207,6 +207,12 @@
                             <span class="font-semibold">Seguro total para o veículo transportado</span>
                         </div>
                     </div>
+                    <div class="mt-10">
+                        <button onclick="openMapModal()" class="px-8 py-4 border-2 border-primary text-primary font-bold rounded-full hover:bg-primary hover:text-white transition-all shadow-xl hover:shadow-primary/30 flex items-center gap-2">
+                            <span class="material-symbols-outlined" data-icon="map">map</span>
+                            Área de Cobertura
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -243,6 +249,44 @@
                     </div>
                     <h3 class="text-xl font-bold mb-4 font-headline">Resgate Concluído</h3>
                     <p class="text-on-surface-variant">Pronto! Nós cuidamos da segurança do seu veículo até o destino final.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-24 bg-surface-container-lowest relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 gsap-reveal">
+                <span class="text-secondary font-bold tracking-widest uppercase text-sm">Nosso Trabalho</span>
+                <h2 class="font-headline text-4xl font-extrabold text-on-surface mt-2 mb-4">Galeria de Resgates</h2>
+                <p class="text-on-surface-variant max-w-2xl mx-auto">Confira alguns dos atendimentos realizados pela nossa equipe técnica em diversas situações.</p>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 gsap-reveal">
+                <!-- Gallery Items (Placeholders) -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-sm bg-surface-container-low cursor-pointer" onclick="openImageModal(this.querySelector('img').src)">
+                    <img src="https://placehold.co/600x600/004e21/ffffff?text=Resgate+1" alt="Resgate" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"/>
+                    <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-sm bg-surface-container-low cursor-pointer" onclick="openImageModal(this.querySelector('img').src)">
+                    <img src="https://placehold.co/600x600/136832/ffffff?text=Resgate+2" alt="Resgate" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"/>
+                    <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-sm bg-surface-container-low cursor-pointer" onclick="openImageModal(this.querySelector('img').src)">
+                    <img src="https://placehold.co/600x600/004e21/ffffff?text=Resgate+3" alt="Resgate" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"/>
+                    <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-sm bg-surface-container-low">
+                    <img src="https://placehold.co/600x600/136832/ffffff?text=Resgate+4" alt="Resgate" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"/>
+                    <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -289,14 +333,103 @@
     </footer>
 
     <!-- Emergency Floating Action Button (FAB) -->
-    <div class="fixed bottom-8 right-8 z-50">
+    <div class="fixed bottom-8 right-8 z-[90]">
         <a href="https://wa.me/5511999999999" target="_blank" class="w-16 h-16 bg-secondary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-all group">
             <span class="material-symbols-outlined text-3xl group-hover:rotate-12 transition-transform" data-icon="sos">sos</span>
         </a>
     </div>
 
+    <!-- Image Modal -->
+    <div id="imageModal" class="fixed inset-0 z-[9999] hidden bg-black/95 backdrop-blur-md flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <button onclick="closeModals()" class="absolute top-6 right-6 text-white hover:text-primary transition-colors z-50">
+            <span class="material-symbols-outlined text-5xl">close</span>
+        </button>
+        <img id="modalImage" src="" alt="Imagem Ampliada" class="max-w-full max-h-[90vh] rounded-2xl shadow-2xl scale-95 transition-transform duration-300 object-contain">
+    </div>
+
+    <!-- Map Modal -->
+    <div id="mapModal" class="fixed inset-0 z-[9999] hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300">
+        <div class="bg-surface-container-lowest border border-outline-variant/30 rounded-3xl p-8 max-w-5xl w-full shadow-2xl relative scale-95 transition-transform duration-300 flex flex-col md:flex-row gap-8 overflow-y-auto max-h-[95vh]">
+            <button onclick="closeModals()" class="absolute top-6 right-6 text-slate-400 hover:text-primary transition-colors z-10 bg-surface rounded-full p-1 shadow-sm">
+                <span class="material-symbols-outlined text-3xl block">close</span>
+            </button>
+            <div class="md:w-5/12 flex flex-col justify-center">
+                <span class="text-secondary font-bold tracking-widest uppercase text-xs mb-2">Raio de Ação Operacional</span>
+                <h3 class="font-headline text-3xl font-extrabold text-on-surface mb-4">Zona Sul <br><span class="text-primary">& Grande SP</span></h3>
+                <p class="text-on-surface-variant leading-relaxed mb-6">
+                    Nossa frota está baseada no coração da Zona Sul paulistana, garantindo rotas de acesso expressas pelas marginais e viadutos para fornecer socorro muitas vezes em <b>menos de 25 minutos</b> para as regiões:
+                </p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3 text-on-surface-variant font-medium"><span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined text-lg">my_location</span></span> Santo Amaro, Brooklin & Moema</li>
+                    <li class="flex items-center gap-3 text-on-surface-variant font-medium"><span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined text-lg">my_location</span></span> Interlagos, Grajaú & Socorro</li>
+                    <li class="flex items-center gap-3 text-on-surface-variant font-medium"><span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined text-lg">my_location</span></span> Marginal Pinheiros (Toda Extensão)</li>
+                    <li class="flex items-center gap-3 text-on-surface-variant font-medium"><span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined text-lg">my_location</span></span> Diadema & ABC Paulista</li>
+                </ul>
+                <a href="https://wa.me/5511916952200" target="_blank" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary to-red-700 text-white font-bold rounded-full hover:shadow-lg hover:shadow-secondary/30 transition-all w-fit group">
+                    Estou nessa região
+                    <span class="material-symbols-outlined block group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </a>
+            </div>
+            <div class="md:w-7/12 h-[300px] md:h-auto min-h-[400px] rounded-2xl overflow-hidden shadow-inner bg-slate-100 border border-slate-200">
+                <!-- Google Maps Iframe Pointing to Zona Sul SP -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116999.3094892795!2d-46.77259695624599!3d-23.639343355088922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce510e168aecc1%3A0x673165b6b3eabaed!2sZona%20Sul%20de%20S%C3%A3o%20Paulo%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1711736841234!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
     <!-- GSAP Initialization Script -->
     <script>
+        // --- Modal JS Logic ---
+        function openImageModal(src) {
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('modalImage');
+            img.src = src;
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                img.classList.remove('scale-95');
+                img.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openMapModal() {
+            const modal = document.getElementById('mapModal');
+            const content = modal.querySelector('div.max-w-5xl');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModals() {
+            const imageModal = document.getElementById('imageModal');
+            const mapModal = document.getElementById('mapModal');
+            
+            imageModal.classList.add('opacity-0');
+            document.getElementById('modalImage').classList.remove('scale-100');
+            document.getElementById('modalImage').classList.add('scale-95');
+
+            mapModal.classList.add('opacity-0');
+            const mapContent = mapModal.querySelector('div.max-w-5xl');
+            mapContent.classList.remove('scale-100');
+            mapContent.classList.add('scale-95');
+
+            setTimeout(() => {
+                imageModal.classList.add('hidden');
+                mapModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModals(); });
+        document.getElementById('imageModal').addEventListener('click', (e) => { if (e.target === document.getElementById('imageModal')) closeModals(); });
+        document.getElementById('mapModal').addEventListener('click', (e) => { if (e.target === document.getElementById('mapModal')) closeModals(); });
+        
+        // --- GSAP Logic ---
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
 

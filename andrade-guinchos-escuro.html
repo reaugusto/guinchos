@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Andrade Guinchos | Dark Mode</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- GSAP Libraries (Animation Engine) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#18181b", // zinc-900
+              "on-surface": "#f4f4f5", // zinc-100
+              "primary": "#f97316", // orange-500
+              "primary-container": "#c2410c", // orange-700
+              "primary-fixed": "#fdba74", // orange-300
+              "on-primary-fixed": "#431407", // orange-950
+              "secondary": "#ef4444", // red-500
+              "surface": "#09090b", // zinc-950
+              "on-surface-variant": "#a1a1aa", // zinc-400
+              "surface-container-lowest": "#27272a" // zinc-800
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        html { scroll-behavior: smooth; }
+        body { background-color: #09090b; color: #f4f4f5; }
+        
+        /* GSAP Initial States */
+        .gsap-reveal {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .hero-fade-up {
+            visibility: hidden; /* Will be set and animated by script */
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-md shadow-md shadow-black/50 border-b border-zinc-800">
+        <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+            <a href="#" class="text-2xl font-extrabold text-primary font-headline tracking-tight">
+                <img src="guincho_ruas.png" alt="">
+            </a>
+            <div class="hidden md:flex items-center space-x-8 font-['Plus_Jakarta_Sans'] font-bold tracking-tight">
+                <a class="text-zinc-400 hover:text-white transition-colors" href="#servicos">Serviços</a>
+                <a class="text-zinc-400 hover:text-white transition-colors" href="#sobre">Sobre Nós</a>
+                <a class="text-zinc-400 hover:text-white transition-colors" href="#cobertura">Cobertura</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="tel:+5511916952200" class="hidden lg:block px-6 py-2 border border-primary text-primary font-bold rounded-full hover:bg-zinc-800 transition-all scale-95 active:scale-90 duration-200">
+                    Ligue Agora
+                </a>
+                <a href="https://wa.me/5511916952200" target="_blank" class="px-6 py-2 bg-secondary text-white font-bold rounded-full shadow-lg shadow-red-900/20 hover:brightness-110 transition-all scale-95 active:scale-90 duration-200">
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="z-10 hero-fade-up">
+                <span class="inline-block py-1 px-4 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-bold tracking-widest uppercase mb-6">
+                    Assistência de Emergência
+                </span>
+                <h1 class="font-headline text-5xl md:text-7xl font-extrabold text-on-surface leading-[1.1] tracking-tight mb-8">
+                    Guincho 24 Horas: <span class="text-primary">ALTA QUALIDADE</span> e Seguro
+                </h1>
+                <p class="text-lg md:text-xl text-on-surface-variant mb-10 max-w-xl leading-relaxed">
+                    Assistência quando mais se precisa ALTA QUALIDADE em Serviços de Guincho e Transportes.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://wa.me/5511916952200" target="_blank" class="px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-white font-bold rounded-full flex items-center gap-2 shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
+                        <span class="material-symbols-outlined" data-icon="phone_forwarded">phone_forwarded</span>
+                        Chamar no WhatsApp
+                    </a>
+                    <a href="tel:+5511916952200" class="px-8 py-4 border border-zinc-700 text-zinc-300 hover:text-white hover:border-primary font-bold rounded-full hover:bg-zinc-800 transition-all">
+                        Ligue Agora
+                    </a>
+                </div>
+            </div>
+            
+            <div class="relative hero-fade-up">
+                <div class="absolute -top-12 -right-12 w-64 h-64 bg-primary-fixed/10 rounded-full blur-3xl"></div>
+                <div class="relative rounded-xl overflow-hidden shadow-2xl shadow-black/50 transform rotate-1 hover:rotate-0 transition-transform duration-700">
+                    <img alt="Tow truck service" class="w-full h-[500px] object-cover opacity-80 mix-blend-luminosity" src="repo-company-driver-towing-repossessed-vehicle-5EM456S.jpg"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+                    <div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+                    <div class="absolute bottom-6 left-6 bg-zinc-900/90 border border-zinc-800 backdrop-blur p-4 rounded-lg shadow-xl flex items-center gap-4">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white">
+                            <span class="material-symbols-outlined" data-icon="timer">timer</span>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-on-surface-variant uppercase">Chegamos</p>
+                            <p class="text-xl font-bold text-primary">Rápido</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Grid (Asymmetric Bento Style) -->
+    <section id="servicos" class="py-24 bg-surface-container-low border-y border-zinc-800/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16 gsap-reveal">
+                <h2 class="font-headline text-4xl font-extrabold text-on-surface mb-4">Especialidades de Resgate</h2>
+                <div class="h-1.5 w-24 bg-secondary rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 gsap-reveal">
+                <!-- Large Feature Card -->
+                <div class="md:col-span-8 bg-surface-container-lowest border border-zinc-800 p-8 rounded-xl md:rounded-tr-[3rem] shadow-sm hover:shadow-primary/10 hover:shadow-lg transition-all group">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="material-symbols-outlined text-5xl text-primary" data-icon="car_repair">car_repair</span>
+                        <span class="text-on-primary-fixed font-bold text-sm bg-primary-fixed px-3 py-1 rounded-full">Mais Solicitado</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-headline">Veículos Leves</h3>
+                    <p class="text-on-surface-variant max-w-md">Transporte especializado para carros de passeio, SUVs e compactos com plataforma hidráulica de última geração.</p>
+                </div>
+                <!-- Tall Card -->
+                <div class="md:col-span-4 bg-primary text-zinc-50 p-8 rounded-xl md:rounded-bl-[3rem] flex flex-col justify-between group shadow-primary/20 shadow-lg">
+                    <div>
+                        <span class="material-symbols-outlined text-5xl mb-6 text-white group-hover:scale-110 origin-left transition-transform" data-icon="two_wheeler">two_wheeler</span>
+                        <h3 class="text-2xl font-bold mb-4 font-headline text-white">Motos</h3>
+                    </div>
+                    <p class="text-zinc-200">Suporte técnico com cintas de fixação especiais para evitar danos à pintura e estrutura da sua motocicleta.</p>
+                </div>
+                <!-- Medium Cards -->
+                <div class="md:col-span-4 bg-surface-container-lowest border border-zinc-800 p-8 rounded-xl shadow-sm hover:shadow-primary/10 transition-all group hover:border-primary">
+                    <span class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:-translate-y-1 transition-transform" data-icon="airport_shuttle">airport_shuttle</span>
+                    <h3 class="text-xl font-bold mb-2 font-headline">Vans e Utilitários</h3>
+                    <p class="text-on-surface-variant text-sm">Logística para furgões e veículos comerciais de médio porte.</p>
+                </div>
+                <div class="md:col-span-4 bg-surface-container-lowest border border-zinc-800 p-8 rounded-xl shadow-sm hover:shadow-primary/10 transition-all group hover:border-primary">
+                    <span class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:-translate-y-1 transition-transform" data-icon="construction">construction</span>
+                    <h3 class="text-xl font-bold mb-2 font-headline">Máquinas e Caçambas</h3>
+                    <p class="text-on-surface-variant text-sm">Caso a bateria do seu veículo esteja descarregada, estamos à disposição para oferecer uma assistência completa.</p>
+                </div>
+                <div class="md:col-span-4 bg-surface-container-lowest border border-zinc-800 p-8 rounded-xl shadow-sm hover:shadow-primary/10 transition-all group hover:border-primary">
+                    <span class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:-translate-y-1 transition-transform" data-icon="local_shipping">battery_charging_full</span>
+                    <h3 class="text-xl font-bold mb-2 font-headline">Recarga de Bateria</h3>
+                    <p class="text-on-surface-variant text-sm">Caminhões e ônibus com sistema de arraste de alta performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="order-2 lg:order-1 relative gsap-reveal">
+                    <div class="absolute inset-0 bg-primary/10 rounded-[4rem] -rotate-3"></div>
+                    <img alt="Our Team" class="relative z-10 rounded-[3rem] w-full h-[600px] object-cover shadow-2xl opacity-80 mix-blend-luminosity" src="shipping-brand-new-car-to-dealership-9WR6HE3.jpg"/>
+                    <div class="absolute inset-0 z-10 bg-primary/10 mix-blend-overlay rounded-[3rem]"></div>
+                    <div class="absolute -bottom-8 -right-8 z-20 bg-secondary p-10 rounded-xl text-white shadow-xl shadow-red-900/30 max-w-xs hover:scale-105 transition-transform duration-300">
+                        <p class="text-4xl font-extrabold mb-2 text-white">15+</p>
+                        <p class="text-sm font-bold uppercase tracking-widest text-zinc-100">Anos de Excelência no Asfalto</p>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 gsap-reveal">
+                    <span class="text-primary font-bold tracking-widest uppercase text-sm">Sua Solução de </span>
+                    <h2 class="font-headline text-5xl font-extrabold text-on-surface mt-4 mb-8 leading-tight">Confiança para Situações de Emergência</h2>
+                    <p class="text-xl text-on-surface-variant leading-relaxed mb-8">
+                        Sua solução confiável acima de tudo em guincho e transportes emergenciais. Com uma equipe experiente e equipamentos modernos bem como reboque emergencial, estamos prontos para lidar com qualquer problema, de pneus furados a reboques complexos, com nossos serviços de guincho e transporte. Disponíveis das 08h as 23h, 7 dias por semana, somos sua ajuda nas estradas quando você mais precisa. Portanto não se preocupe uma vez que estamos aqui para ajuda-lo. 
+                    </p>
+                    <p class="text-on-surface-variant leading-relaxed mb-10">
+                        Contamos com uma rede própria de guincheiros altamente capacitados e treinados para qualquer emergência, 24 horas por dia. Nossa frota é renovada constantemente para garantir o melhor atendimento técnico do mercado.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            <span class="font-semibold text-zinc-300">Equipamentos de última geração</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            <span class="font-semibold text-zinc-300">Profissionais certificados</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            <span class="font-semibold text-zinc-300">Seguro total para o veículo transportado</span>
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <button onclick="openMapModal()" class="px-8 py-4 bg-zinc-900 border border-zinc-700 text-zinc-200 font-bold rounded-full hover:bg-zinc-800 hover:border-primary transition-all shadow-lg shadow-black flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary" data-icon="map">map</span>
+                            Ver Área de Cobertura
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works (3 simple steps) -->
+    <section class="py-24 bg-surface-container-low border-y border-zinc-800 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 gsap-reveal">
+                <h2 class="font-headline text-4xl font-extrabold mb-4">Como funciona o resgate?</h2>
+                <p class="text-on-surface-variant">Simplicidade e rapidez quando você mais precisa.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative gsap-reveal">
+                <!-- Connect Line -->
+                <div class="hidden md:block absolute top-10 left-[16.66%] right-[16.66%] h-0.5 bg-zinc-800 z-0"></div>
+                
+                <!-- Step 1 -->
+                <div class="relative z-10 text-center flex flex-col items-center group">
+                    <div class="w-20 h-20 rounded-full bg-zinc-900 shadow-xl shadow-black flex items-center justify-center mb-8 border border-zinc-700 group-hover:border-primary group-hover:scale-110 transition-all duration-300">
+                        <span class="text-3xl font-extrabold text-primary font-headline">01</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 font-headline">Contato Imediato</h3>
+                    <p class="text-on-surface-variant">Aconteceu um imprevisto? Entre em contato via WhatsApp ou Telefone.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative z-10 text-center flex flex-col items-center group">
+                    <div class="w-20 h-20 rounded-full bg-primary shadow-xl shadow-primary/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-3xl font-extrabold text-zinc-900 font-headline">02</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 font-headline">Deslocamento Rápido</h3>
+                    <p class="text-on-surface-variant">Despachamos um guincheiro imediatamente para sua localização via GPS.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative z-10 text-center flex flex-col items-center group">
+                    <div class="w-20 h-20 rounded-full bg-zinc-900 shadow-xl shadow-black flex items-center justify-center mb-8 border border-zinc-700 group-hover:border-primary group-hover:scale-110 transition-all duration-300">
+                        <span class="text-3xl font-extrabold text-primary font-headline">03</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 font-headline">Resgate Concluído</h3>
+                    <p class="text-on-surface-variant">Pronto! Nós cuidamos da segurança do seu veículo até o destino final.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-24 bg-surface-container-lowest relative border-y border-zinc-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 gsap-reveal">
+                <span class="text-secondary font-bold tracking-widest uppercase text-sm">Nosso Trabalho</span>
+                <h2 class="font-headline text-4xl font-extrabold text-on-surface mt-2 mb-4">Galeria de Resgates</h2>
+                <p class="text-on-surface-variant max-w-2xl mx-auto">Confira alguns dos atendimentos realizados pela nossa equipe técnica em diversas situações.</p>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 gsap-reveal">
+                <!-- Gallery Items (Placeholders) -->
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-sm shadow-black bg-zinc-900 border border-zinc-800 hover:border-primary transition-all cursor-pointer" onclick="openImageModal(this.querySelector('img').src)">
+                    <img src="WhatsApp-Image-2023-08-18-at-18.15.11.jpeg" alt="Resgate" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 opacity-80 mix-blend-luminosity"/>
+                    <div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+                    <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
+                        <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-sm shadow-black bg-zinc-900 border border-zinc-800 hover:border-primary transition-all cursor-pointer" onclick="openImageModal(this.querySelector('img').src)">
+                    <img src="WhatsApp-Image-2023-08-18-at-18.20.28.jpeg" alt="Resgate" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 opacity-80 mix-blend-luminosity"/>
+                    <div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+                    <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
+                        <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-sm shadow-black bg-zinc-900 border border-zinc-800 hover:border-primary transition-all cursor-pointer" onclick="openImageModal(this.querySelector('img').src)">
+                    <img src="WhatsApp-Image-2023-08-18-at-18.27.00.jpeg" alt="Resgate" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 opacity-80 mix-blend-luminosity"/>
+                    <div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+                    <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
+                        <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-sm shadow-black bg-zinc-900 border border-zinc-800 hover:border-primary transition-all">
+                    <img src="WhatsApp-Image-2023-08-18-at-18.46.50.jpeg" alt="Resgate" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 opacity-80 mix-blend-luminosity"/>
+                    <div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+                    <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
+                        <span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="cobertura" class="w-full bg-surface text-zinc-300 py-16 border-t border-zinc-800">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 px-8 max-w-7xl mx-auto">
+            <div class="space-y-6">
+                <span class="text-2xl font-bold text-white font-headline">Andrade Guinchos</span>
+                <p class="text-zinc-500 text-sm leading-relaxed max-w-xs">
+                    Sentinela do Movimento. Atendimento emergencial com precisão industrial e cuidado humano.
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://wa.me/5511999999999" target="_blank" class="text-primary hover:text-white transition-colors cursor-pointer">
+                        <span class="material-symbols-outlined text-3xl" data-icon="forum">forum</span>
+                    </a>
+                    <a href="mailto:contato@andradeguinchos.com" class="text-primary hover:text-white transition-colors cursor-pointer">
+                        <span class="material-symbols-outlined text-3xl" data-icon="mail">mail</span>
+                    </a>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <h4 class="font-headline font-bold text-sm uppercase tracking-widest text-primary">Áreas de Atuação</h4>
+                <ul class="space-y-4 font-['Inter'] text-sm uppercase tracking-widest">
+                    <li class="text-zinc-400 hover:text-white hover:translate-x-1 transition-transform cursor-pointer">São Paulo</li>
+                    <li class="text-zinc-400 hover:text-white hover:translate-x-1 transition-transform cursor-pointer">Grande ABC</li>
+                    <li class="text-zinc-400 hover:text-white hover:translate-x-1 transition-transform cursor-pointer">Guarulhos</li>
+                </ul>
+            </div>
+            <div class="space-y-6">
+                <h4 class="font-headline font-bold text-sm uppercase tracking-widest text-primary">Contato Rápido</h4>
+                <ul class="space-y-4 font-['Inter'] text-sm uppercase tracking-widest">
+                    <li><a href="tel:+5511999999999" class="text-zinc-400 hover:text-white hover:translate-x-1 transition-transform inline-block">Ligar Diretamente</a></li>
+                    <li><a href="https://wa.me/5511999999999" target="_blank" class="text-zinc-400 hover:text-white hover:translate-x-1 transition-transform inline-block">WhatsApp Corporativo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-8 pt-16 border-t border-zinc-800 text-center md:text-left mt-8">
+            <p class="text-zinc-600 text-xs font-['Inter'] uppercase tracking-widest">
+                © 2026 Andrade Guinchos. Sentinel of Motion.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Emergency Floating Action Button (FAB) -->
+    <div class="fixed bottom-8 right-8 z-[90]">
+        <a href="https://wa.me/5511999999999" target="_blank" class="w-16 h-16 bg-secondary text-white rounded-full shadow-2xl shadow-red-900/50 border border-red-400/20 flex items-center justify-center hover:scale-110 active:scale-90 transition-all group">
+            <span class="material-symbols-outlined text-3xl group-hover:rotate-12 transition-transform" data-icon="sos">sos</span>
+        </a>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="fixed inset-0 z-[9999] hidden bg-black/95 backdrop-blur-md flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <button onclick="closeModals()" class="absolute top-6 right-6 text-white hover:text-primary transition-colors z-50">
+            <span class="material-symbols-outlined text-5xl">close</span>
+        </button>
+        <img id="modalImage" src="" alt="Imagem Ampliada" class="max-w-full max-h-[90vh] rounded-2xl shadow-2xl scale-95 transition-transform duration-300 object-contain">
+    </div>
+
+    <!-- Map Modal -->
+    <div id="mapModal" class="fixed inset-0 z-[9999] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 md:p-8 opacity-0 transition-opacity duration-300">
+        <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-8 max-w-5xl w-full shadow-[0_0_50px_rgba(0,0,0,0.8)] relative scale-95 transition-transform duration-300 flex flex-col md:flex-row gap-8 overflow-y-auto max-h-[95vh]">
+            <button onclick="closeModals()" class="absolute top-6 right-6 text-zinc-500 hover:text-primary transition-colors z-10 bg-zinc-900 rounded-full p-1 border border-zinc-800">
+                <span class="material-symbols-outlined text-3xl block">close</span>
+            </button>
+            <div class="md:w-5/12 flex flex-col justify-center">
+                <span class="text-primary font-bold tracking-widest uppercase text-xs mb-2">Raio de Ação Operacional</span>
+                <h3 class="font-headline text-3xl font-extrabold text-white mb-4">Zona Sul <br><span class="text-secondary">& Grande SP</span></h3>
+                <p class="text-zinc-400 leading-relaxed mb-6">
+                    Nossa base está estrategicamente alocada na Zona Sul, permitindo vias de fuga pelas marginais para garantir um resgate express, muitas vezes na metade do tempo convencional (estimado 25 minutos) nos locais:
+                </p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3 text-zinc-300 font-medium"><span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/20 text-primary border border-primary/30"><span class="material-symbols-outlined text-lg">my_location</span></span> Santo Amaro, Brooklin & Moema</li>
+                    <li class="flex items-center gap-3 text-zinc-300 font-medium"><span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/20 text-primary border border-primary/30"><span class="material-symbols-outlined text-lg">my_location</span></span> Interlagos, Grajaú & Socorro</li>
+                    <li class="flex items-center gap-3 text-zinc-300 font-medium"><span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/20 text-primary border border-primary/30"><span class="material-symbols-outlined text-lg">my_location</span></span> Marginal Pinheiros</li>
+                    <li class="flex items-center gap-3 text-zinc-300 font-medium"><span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/20 text-primary border border-primary/30"><span class="material-symbols-outlined text-lg">my_location</span></span> ABC Paulista</li>
+                </ul>
+                <a href="https://wa.me/5511916952200" target="_blank" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary to-red-600 text-white font-bold rounded-full hover:shadow-lg hover:shadow-red-500/30 border border-red-500/50 transition-all w-fit group">
+                    Solicitar Região Escopo
+                    <span class="material-symbols-outlined block group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </a>
+            </div>
+            <div class="md:w-7/12 h-[300px] md:h-auto min-h-[400px] rounded-2xl overflow-hidden shadow-inner bg-zinc-900 border border-zinc-800 relative">
+                <!-- Using an inverted/dark-mode query for the map visually through CSS filters, or just standard iframe with invert -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116999.3094892795!2d-46.77259695624599!3d-23.639343355088922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce510e168aecc1%3A0x673165b6b3eabaed!2sZona%20Sul%20de%20S%C3%A3o%20Paulo%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1711736841234!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) contrast(100%);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- GSAP Initialization Script -->
+    <script>
+        // --- Modal JS Logic ---
+        function openImageModal(src) {
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('modalImage');
+            img.src = src;
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                img.classList.remove('scale-95');
+                img.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openMapModal() {
+            const modal = document.getElementById('mapModal');
+            const content = modal.querySelector('div.max-w-5xl');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModals() {
+            const imageModal = document.getElementById('imageModal');
+            const mapModal = document.getElementById('mapModal');
+            
+            imageModal.classList.add('opacity-0');
+            document.getElementById('modalImage').classList.remove('scale-100');
+            document.getElementById('modalImage').classList.add('scale-95');
+
+            mapModal.classList.add('opacity-0');
+            const mapContent = mapModal.querySelector('div.max-w-5xl');
+            mapContent.classList.remove('scale-100');
+            mapContent.classList.add('scale-95');
+
+            setTimeout(() => {
+                imageModal.classList.add('hidden');
+                mapModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModals(); });
+        document.getElementById('imageModal').addEventListener('click', (e) => { if (e.target === document.getElementById('imageModal')) closeModals(); });
+        document.getElementById('mapModal').addEventListener('click', (e) => { if (e.target === document.getElementById('mapModal')) closeModals(); });
+        
+        // --- GSAP Logic ---
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hide hero elements initially to prevent FOUC
+            const heroElements = document.querySelectorAll('.hero-fade-up');
+            gsap.set(heroElements, { y: 40, opacity: 0, visibility: 'visible' });
+            
+            // Hero Intro Animation
+            gsap.to(heroElements, {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                stagger: 0.15,
+                ease: "power3.out",
+                delay: 0.2
+            });
+
+            // Scroll Reveal Configurations
+            const revealElements = document.querySelectorAll('.gsap-reveal');
+            revealElements.forEach((element) => {
+                gsap.fromTo(element, 
+                    { y: 50, autoAlpha: 0 },
+                    {
+                        y: 0,
+                        autoAlpha: 1,
+                        duration: 1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 85%", 
+                            toggleActions: "play none none reverse"
+                        }
+                    }
+                );
+            });
+            
+            // Subtle rotation animation for the About Image Badge
+            gsap.to('.ag-stats-box', {
+                y: -10,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+        });
+    </script>
+</body>
+</html>
